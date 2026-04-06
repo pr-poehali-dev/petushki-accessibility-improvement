@@ -20,6 +20,12 @@ export default {
 		},
 		extend: {
 			colors: {
+				brand: {
+					red: '#C8102E',
+					'red-dark': '#a00d24',
+					gray: '#6D6E71',
+					'gray-light': '#9a9b9e',
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',

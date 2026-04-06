@@ -114,10 +114,12 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 }
 
 const colorMap: Record<string, string> = {
-  purple: "text-purple-400 bg-purple-500/10 border-purple-500/30",
-  cyan: "text-cyan-400 bg-cyan-500/10 border-cyan-500/30",
-  pink: "text-pink-400 bg-pink-500/10 border-pink-500/30",
+  purple: "text-red-400 bg-red-500/10 border-red-500/30",
+  cyan: "text-gray-300 bg-white/5 border-white/10",
+  pink: "text-red-300 bg-red-500/8 border-red-500/20",
 };
+
+const LOGO_URL = "https://cdn.poehali.dev/files/0ab01e57-fd23-4688-b6b4-ad622a08b7de.PNG";
 
 const SEND_ORDER_URL = "https://functions.poehali.dev/088af494-521b-4ce6-8365-065d32f4baae";
 
@@ -172,30 +174,22 @@ const Index = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-[#080c14]/95 backdrop-blur-xl border-b border-purple-500/20 shadow-lg shadow-purple-900/20"
+            ? "bg-[#111111]/96 backdrop-blur-xl border-b border-white/8 shadow-lg shadow-black/40"
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-500 to-cyan-400 flex items-center justify-center animate-pulse-glow">
-              <Icon name="Scale" size={18} className="text-white" />
-            </div>
-            <div>
-              <span className="font-display text-lg tracking-wider text-white">ЭКС <span className="neon-text-purple">ГРУПП</span></span>
-              <div className="text-gray-500 text-xs leading-none">Независимая экспертиза</div>
-            </div>
-          </div>
+        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+          <img src={LOGO_URL} alt="ЭКС Групп" className="h-10 w-auto" />
 
           <div className="hidden md:flex items-center gap-8">
             {NAV.map((n) => (
               <button
                 key={n.id}
                 onClick={() => scrollTo(n.id)}
-                className="text-sm font-medium text-gray-300 hover:text-white transition-all duration-200 relative group"
+                className="text-sm font-medium text-gray-400 hover:text-white transition-all duration-200 relative group"
               >
                 {n.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-purple-500 to-cyan-400 group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red group-hover:w-full transition-all duration-300" />
               </button>
             ))}
             <a
@@ -212,9 +206,9 @@ const Index = () => {
         </div>
 
         {menuOpen && (
-          <div className="md:hidden bg-[#080c14]/98 backdrop-blur-xl border-t border-purple-500/20 px-6 py-4 flex flex-col gap-4">
+          <div className="md:hidden bg-[#111111]/98 backdrop-blur-xl border-t border-white/8 px-6 py-4 flex flex-col gap-4">
             {NAV.map((n) => (
-              <button key={n.id} onClick={() => scrollTo(n.id)} className="text-left text-gray-300 hover:text-white py-2 border-b border-purple-900/30 text-sm font-medium">
+              <button key={n.id} onClick={() => scrollTo(n.id)} className="text-left text-gray-300 hover:text-white py-2 border-b border-white/8 text-sm font-medium">
                 {n.label}
               </button>
             ))}
@@ -231,17 +225,17 @@ const Index = () => {
           className="absolute inset-0 bg-cover bg-center opacity-25"
           style={{ backgroundImage: `url(${HERO_BG})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080c14]/60 via-[#080c14]/40 to-[#080c14]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#111]/70 via-[#111]/50 to-[#111]" />
 
-        <div className="absolute top-1/4 left-10 w-64 h-64 rounded-full bg-purple-600/20 blur-3xl animate-float" />
-        <div className="absolute bottom-1/3 right-10 w-80 h-80 rounded-full bg-cyan-500/10 blur-3xl animate-float2" />
+        <div className="absolute top-1/4 left-10 w-72 h-72 rounded-full bg-red-700/12 blur-3xl animate-float" />
+        <div className="absolute bottom-1/3 right-10 w-80 h-80 rounded-full bg-zinc-600/10 blur-3xl animate-float2" />
 
-        <div className="absolute top-24 right-24 w-16 h-16 border border-purple-500/20 rotate-45 animate-float hidden md:block" />
-        <div className="absolute bottom-40 left-24 w-10 h-10 border border-cyan-500/20 rotate-12 animate-float2 hidden md:block" />
+        <div className="absolute top-24 right-24 w-16 h-16 border border-red-600/20 rotate-45 animate-float hidden md:block" />
+        <div className="absolute bottom-40 left-24 w-10 h-10 border border-zinc-500/20 rotate-12 animate-float2 hidden md:block" />
 
         <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-sm mb-8 animate-slide-up">
-            <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/25 bg-red-500/8 text-red-300 text-sm mb-8 animate-slide-up">
+            <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
             ООО «ЭКС Групп» · Владимирская область
           </div>
 
@@ -275,14 +269,14 @@ const Index = () => {
 
         <button
           onClick={() => scrollTo("services")}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-500 hover:text-purple-400 transition-colors animate-float"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-500 hover:text-red-400 transition-colors animate-float"
         >
           <Icon name="ChevronDown" size={32} />
         </button>
       </section>
 
       {/* STATS */}
-      <section className="py-16 border-y border-purple-500/10">
+      <section className="py-16 border-y border-white/6">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
           {STATS.map((s, i) => (
             <AnimatedSection key={i} className="text-center">
@@ -297,12 +291,12 @@ const Index = () => {
       <section id="services" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 text-sm mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/25 bg-red-500/8 text-red-300 text-sm mb-6">
               <Icon name="Layers" size={14} />
               Наши услуги
             </div>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
-              ЧТО МЫ <span className="neon-text-purple">ДЕЛАЕМ</span>
+              ЧТО МЫ <span className="brand-text-red">ДЕЛАЕМ</span>
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto">
               Полный спектр независимой экспертизы и оценки имущества
@@ -318,7 +312,7 @@ const Index = () => {
                   </div>
                   <h3 className="font-semibold text-white text-base mb-2 leading-snug">{s.title}</h3>
                   <p className="text-gray-400 text-sm leading-relaxed">{s.desc}</p>
-                  <div className="mt-4 flex items-center gap-2 text-purple-400 text-sm font-medium group cursor-pointer">
+                  <div className="mt-4 flex items-center gap-2 text-red-400 text-sm font-medium group cursor-pointer">
                     <span>Заказать</span>
                     <Icon name="ArrowRight" size={13} className="group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -330,19 +324,19 @@ const Index = () => {
       </section>
 
       {/* ADVANTAGES */}
-      <section className="py-20 px-6 border-y border-purple-500/10">
+      <section className="py-20 px-6 border-y border-white/6">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-14">
             <h2 className="font-display text-4xl font-bold text-white mb-4">
-              ПОЧЕМУ <span className="neon-text-cyan">ВЫБИРАЮТ НАС</span>
+              ПОЧЕМУ <span className="brand-text-red">ВЫБИРАЮТ НАС</span>
             </h2>
           </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {ADVANTAGES.map((a, i) => (
               <AnimatedSection key={i}>
-                <div className="glass-card rounded-2xl p-6 text-center h-full hover:border-purple-500/40 transition-all duration-300">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-cyan-500/20 border border-purple-500/30 flex items-center justify-center mx-auto mb-4">
-                    <Icon name={a.icon} size={24} className="text-purple-400" />
+                <div className="glass-card rounded-2xl p-6 text-center h-full hover:border-red-500/30 transition-all duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mx-auto mb-4">
+                    <Icon name={a.icon} size={24} className="text-red-400" />
                   </div>
                   <h3 className="font-semibold text-white text-base mb-2">{a.title}</h3>
                   <p className="text-gray-400 text-sm leading-relaxed">{a.desc}</p>
@@ -357,12 +351,12 @@ const Index = () => {
       <section id="portfolio" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-sm mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/25 bg-red-500/8 text-red-300 text-sm mb-6">
               <Icon name="Briefcase" size={14} />
               Примеры работ
             </div>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
-              НАШИ <span className="neon-text-cyan">КЕЙСЫ</span>
+              НАШИ <span className="brand-text-red">КЕЙСЫ</span>
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto">Реальные задачи, которые мы успешно решили</p>
           </AnimatedSection>
@@ -373,10 +367,10 @@ const Index = () => {
                 <div className="portfolio-card cursor-pointer">
                   <div className={`bg-gradient-to-br ${p.color} h-52 flex items-center justify-center relative`}>
                     <div className="font-display text-8xl font-bold opacity-10 text-white">{p.num}</div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent" />
                     <div className="overlay">
                       <div>
-                        <span className="text-purple-300 text-xs font-semibold uppercase tracking-wider">{p.cat}</span>
+                        <span className="text-red-300 text-xs font-semibold uppercase tracking-wider">{p.cat}</span>
                         <div className="text-white font-bold text-lg mt-1">{p.title}</div>
                       </div>
                     </div>
@@ -393,12 +387,12 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-pink-500/30 bg-pink-500/10 text-pink-300 text-sm mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/25 bg-red-500/8 text-red-300 text-sm mb-6">
                 <Icon name="Users" size={14} />
                 О компании
               </div>
               <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">
-                ООО <span className="neon-text-purple">«ЭКС ГРУПП»</span>
+                ООО <span className="brand-text-red">«ЭКС ГРУПП»</span>
               </h2>
               <p className="text-gray-400 leading-relaxed mb-5">
                 Мы — независимая экспертная организация из Владимирской области. Более 10 лет помогаем физическим и юридическим лицам защищать свои права при спорах со страховыми компаниями, застройщиками, соседями и подрядчиками.
@@ -408,7 +402,7 @@ const Index = () => {
               </p>
               <div className="flex flex-wrap gap-3">
                 {["Независимость", "Аттестованные эксперты", "Суд и страховые", "Выезд за 24ч"].map((v) => (
-                  <span key={v} className="px-4 py-2 rounded-full border border-purple-500/30 text-purple-300 text-sm font-medium">
+                  <span key={v} className="px-4 py-2 rounded-full border border-red-500/25 text-red-300 text-sm font-medium">
                     {v}
                   </span>
                 ))}
@@ -429,8 +423,8 @@ const Index = () => {
                     { icon: "Clock", label: "Режим работы", value: "Пн–Пт: 9:00–18:00" },
                   ].map((c, i) => (
                     <div key={i} className="flex items-start gap-4">
-                      <div className="w-9 h-9 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Icon name={c.icon} size={15} className="text-purple-400" />
+                      <div className="w-9 h-9 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Icon name={c.icon} size={15} className="text-red-400" />
                       </div>
                       <div>
                         <div className="text-gray-500 text-xs mb-0.5">{c.label}</div>
@@ -449,27 +443,28 @@ const Index = () => {
       <section id="contact" className="py-24 px-6">
         <div className="max-w-3xl mx-auto">
           <AnimatedSection className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 text-sm mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/25 bg-red-500/8 text-red-300 text-sm mb-6">
               <Icon name="MessageCircle" size={14} />
               Бесплатная консультация
             </div>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
-              ОСТАВЬТЕ <span className="neon-text-purple">ЗАЯВКУ</span>
+              ОСТАВЬТЕ <span className="brand-text-red">ЗАЯВКУ</span>
             </h2>
             <p className="text-gray-400">Расскажите о вашей ситуации — перезвоним в течение часа</p>
           </AnimatedSection>
 
           <AnimatedSection>
             {submitted ? (
-              <div className="glass-card rounded-2xl p-12 text-center neon-border-purple">
-                <div className="w-20 h-20 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-6 animate-pulse-glow">
-                  <Icon name="CheckCircle" size={36} className="text-purple-400" />
+              <div className="glass-card rounded-2xl p-12 text-center neon-border-purple" style={{borderColor: 'rgba(200,16,46,0.4)', boxShadow: '0 0 20px rgba(200,16,46,0.1)'}}>
+
+                <div className="w-20 h-20 rounded-full bg-red-500/15 flex items-center justify-center mx-auto mb-6 animate-pulse-glow">
+                  <Icon name="CheckCircle" size={36} className="text-red-400" />
                 </div>
                 <h3 className="font-display text-2xl font-bold text-white mb-3">Заявка принята!</h3>
                 <p className="text-gray-400">Наш эксперт свяжется с вами в ближайшее время.</p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-6 text-purple-400 hover:text-purple-300 text-sm underline"
+                  className="mt-6 text-red-400 hover:text-red-300 text-sm underline"
                 >
                   Отправить ещё
                 </button>
@@ -484,7 +479,7 @@ const Index = () => {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Иван Иванов"
-                      className="w-full bg-white/5 border border-purple-500/20 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/60 focus:bg-purple-500/5 transition-all duration-200 text-sm"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-red-500/50 focus:bg-red-500/5 transition-all duration-200 text-sm"
                     />
                   </div>
                   <div>
@@ -494,7 +489,7 @@ const Index = () => {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="8-919-025-24-23"
-                      className="w-full bg-white/5 border border-purple-500/20 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/60 focus:bg-purple-500/5 transition-all duration-200 text-sm"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-red-500/50 focus:bg-red-500/5 transition-all duration-200 text-sm"
                     />
                   </div>
                 </div>
@@ -506,7 +501,7 @@ const Index = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="ivan@mail.ru"
-                    className="w-full bg-white/5 border border-purple-500/20 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/60 focus:bg-purple-500/5 transition-all duration-200 text-sm"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-red-500/50 focus:bg-red-500/5 transition-all duration-200 text-sm"
                   />
                 </div>
 
@@ -531,7 +526,7 @@ const Index = () => {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Кратко опишите, что произошло и какая помощь нужна..."
-                    className="w-full bg-white/5 border border-purple-500/20 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/60 focus:bg-purple-500/5 transition-all duration-200 text-sm resize-none"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-red-500/50 focus:bg-red-500/5 transition-all duration-200 text-sm resize-none"
                   />
                 </div>
 
@@ -569,24 +564,16 @@ const Index = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-purple-500/10 py-8 px-6">
+      <footer className="border-t border-white/8 py-8 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-md bg-gradient-to-br from-purple-500 to-cyan-400 flex items-center justify-center">
-              <Icon name="Scale" size={14} className="text-white" />
-            </div>
-            <div>
-              <span className="font-display text-sm tracking-wider text-gray-400">ЭКС <span className="text-purple-400">ГРУПП</span></span>
-              <div className="text-gray-600 text-xs">Независимая экспертиза</div>
-            </div>
-          </div>
+          <img src={LOGO_URL} alt="ЭКС Групп" className="h-8 w-auto opacity-70" />
           <div className="text-center text-gray-600 text-xs space-y-1">
-            <div>© 2024 ООО «ЭКС Групп». Все права защищены.</div>
-            <div>г. Петушки, ул. Маяковского, д. 29 · <a href="tel:89190252423" className="hover:text-purple-400 transition-colors">8-919-025-24-23</a></div>
+            <div>© 2025 ООО «ЭКС Групп». Все права защищены.</div>
+            <div>г. Петушки, ул. Маяковского, д. 29 · <a href="tel:89190252423" className="hover:text-red-400 transition-colors">8-919-025-24-23</a></div>
           </div>
           <a
             href="mailto:payment@eks-gr.ru"
-            className="text-gray-500 hover:text-purple-400 transition-colors text-sm flex items-center gap-2"
+            className="text-gray-500 hover:text-red-400 transition-colors text-sm flex items-center gap-2"
           >
             <Icon name="Mail" size={14} />
             payment@eks-gr.ru
