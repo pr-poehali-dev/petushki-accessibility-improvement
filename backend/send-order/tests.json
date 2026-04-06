@@ -1,0 +1,30 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Пустое тело — ошибка валидации",
+      "method": "POST",
+      "path": "/",
+      "body": {},
+      "expectedStatus": 400
+    },
+    {
+      "name": "Отправка заявки",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Тест Тестов",
+        "phone": "8-919-000-00-00",
+        "email": "test@test.ru",
+        "service": "Оценка транспорта",
+        "message": "Тестовая заявка с сайта"
+      },
+      "expectedStatus": 200
+    }
+  ]
+}

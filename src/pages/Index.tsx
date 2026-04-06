@@ -119,6 +119,8 @@ const colorMap: Record<string, string> = {
   pink: "text-pink-400 bg-pink-500/10 border-pink-500/30",
 };
 
+const SEND_ORDER_URL = "https://functions.poehali.dev/088af494-521b-4ce6-8365-065d32f4baae";
+
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -126,6 +128,8 @@ const Index = () => {
     name: "", phone: "", email: "", service: "", message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 60);
@@ -138,9 +142,27 @@ const Index = () => {
     setMenuOpen(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch(SEND_ORDER_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+        setFormData({ name: "", phone: "", email: "", service: "", message: "" });
+      } else {
+        setError("Ошибка отправки. Попробуйте ещё раз или позвоните нам.");
+      }
+    } catch {
+      setError("Не удалось отправить заявку. Проверьте интернет-соединение.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -513,12 +535,28 @@ const Index = () => {
                   />
                 </div>
 
+                {error && (
+                  <div className="text-red-400 text-sm text-center bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
+                    {error}
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="btn-neon w-full py-4 rounded-xl font-semibold text-white text-base flex items-center justify-center gap-2"
+                  disabled={loading}
+                  className="btn-neon w-full py-4 rounded-xl font-semibold text-white text-base flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <Icon name="Send" size={18} />
-                  Отправить заявку
+                  {loading ? (
+                    <>
+                      <Icon name="Loader" size={18} className="animate-spin" />
+                      Отправляем...
+                    </>
+                  ) : (
+                    <>
+                      <Icon name="Send" size={18} />
+                      Отправить заявку
+                    </>
+                  )}
                 </button>
 
                 <p className="text-center text-gray-600 text-xs">
